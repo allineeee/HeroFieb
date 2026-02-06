@@ -1,21 +1,51 @@
 ﻿@{
     ViewData["Title"] = "FIEB";
+
+    var itens = new List<(string Titulo, List<string> SubItens)> {
+        ("Cursos Técnicos", new List<string> {"Criatividade", "Inovação", "Bem-estar", "Negócios","Produção", "Ver todos" }),
+         ("Ensino Médio", new List<string> {"Básico", "Integrado" }),
+        ("Ensino Fundamental", new List<string> {}),
+        ("Cursinho", new List<string> {}),
+        ("Reserva de Vagas", new List<string> { })
+    };
 }
 
 <section class="hero">
     <video autoplay muted loop playsinline class="hero-video">
-        <source src="~/videos/hero_fieb.mp4" type="video/mp4">
+        <source src="~/videos/hero_video.mp4" type="video/mp4">
     </video>
+
 
     <div class="hero-mascara"></div>
 
 
-    <div class="hero-menu container bg-light d-flex justify-content-start">
-        <ul class="list-unstyled">
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
-            <li>aaa</li>
+    <div class="hero-menu container d-flex justify-content-start">
+        <ul class="ul-menu list-unstyled rounded ms-5 p-4">
+            @foreach (var item in itens)
+            {
+                <li class="border-bottom dropend">
+                    <a class="menu-link dropdown-toggle d-flex justify-content-between align-items-center"
+                       href="#" data-bs-toggle="dropdown">
+                        <span>@item.Titulo</span>
+                        @if (item.SubItens.Any())
+                        {
+                            <i class="bi bi-chevron-right"></i>
+                        }
+                    </a>
+                    @if (item.SubItens.Any())
+                    {
+                        <ul class="dropdown-menu ms-4">
+
+                            @foreach (var sub in item.SubItens.Order())
+                            {
+                                <li class="p-0">
+                                    <a class="dropdown-item" href="#">@sub</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
         </ul>
     </div>
 </section>
