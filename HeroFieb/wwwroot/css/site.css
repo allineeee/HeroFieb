@@ -63,7 +63,8 @@ header {
 
 .navbar {
     background: var(--azul-novo);
-    border-color: rgba(255,255,255,0.45) !important;
+    /*border-color: var(--verde-agua) !important;*/
+    border-color: color-mix( in srgb, var(--verde-agua) 50%, transparent) !important;
 
     a {
         color: var(--azul-claro) !important;
